@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepFake Detection Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="main-bg">
+        <header>
+            <h1>🛡️ DeepFake Detection Dashboard</h1>
+            <p>Choose your input method below: Use the <strong>Camera</strong> for live capture or <strong>Upload</strong> multiple files.</p>
+        </header>
+
+        <main>
+            <div class="input-container">
+                <div class="input-group">
+                    <h3><i class="fas fa-camera"></i> Camera / Single Image</h3>
+                    <div class="drop-zone" id="camera-drop-zone">
+                        <div class="drop-zone-content" id="camera-preview-container">
+                            <i class="fas fa-image fa-3x"></i>
+                            <p>Capture or Upload Single</p>
+                            <input type="file" id="camera-input" accept="image/*" hidden>
+                        </div>
+                        <div class="camera-controls" style="display: none;">
+                            <video id="webcam-video" autoplay playsinline></video>
+                            <canvas id="webcam-canvas" style="display: none;"></canvas>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn-secondary" id="open-camera-btn">Open Camera</button>
+                            <button type="button" class="btn-secondary" id="capture-btn" style="display: none;">Capture</button>
+                            <button type="button" class="btn-secondary" id="upload-single-btn">Upload File</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <h3><i class="fas fa-folder-open"></i> Batch Upload</h3>
+                    <div class="drop-zone" id="batch-drop-zone">
+                        <div class="drop-zone-content">
+                            <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                            <p>Upload Multiple Images</p>
+                            <input type="file" id="batch-input" accept="image/*" multiple hidden>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="submit-btn" class="scan-button">🚀 START DEEP SCAN ANALYSIS</button>
+
+            <div class="divider"></div>
+
+            <div id="results-container">
+                <!-- Results cards will be added here dynamically -->
+            </div>
+            
+            <div id="loading" style="display: none;">
+                <div class="loader"></div>
+                <p>Analyzing images... Please wait.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

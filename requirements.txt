@@ -1,0 +1,11 @@
+flask
+gradio>=4.0.0
+opencv-python
+numpy
+mtcnn
+Pillow
+transformers
+torch
+torchvision
+tensorflow
+scipy
